@@ -26,8 +26,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
     .brand {
@@ -62,6 +62,47 @@
     .badge-off {
       background: #ffebe9;
       color: #cf222e;
+    }
+
+    /* Update Alert Banner */
+    .update-banner {
+      background: #fff8c5;
+      border: 1px solid #d4a72c;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 12px;
+      display: none;
+      animation: uetdl-fade 0.25s ease;
+    }
+    .update-banner-header {
+      font-weight: 700;
+      color: #735c0f;
+      font-size: 12px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .update-banner-desc {
+      font-size: 11.5px;
+      color: #57606a;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .update-btn {
+      background: #0969da;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .update-btn:hover {
+      background: #0856b5;
     }
 
     .switch-row {
@@ -166,6 +207,11 @@
       font-size: 11px;
       border: 1px solid #d0e2fa;
     }
+
+    @keyframes uetdl-fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -175,6 +221,13 @@
       <div class="subtitle">Tải tài liệu & bài giảng siêu tốc</div>
     </div>
     <span id="badge" class="badge badge-on">BẬT</span>
+  </div>
+
+  <!-- Thông báo cập nhật tự động từ GitHub -->
+  <div id="update-banner" class="update-banner">
+    <div class="update-banner-header">🚀 Có bản cập nhật mới: <span id="new-version-text">v2.3</span></div>
+    <div class="update-banner-desc">Đã có phiên bản mới trên GitHub với nhiều cải tiến. Bạn hãy chạy file <b>cap-nhat.bat</b> hoặc tải bản mới.</div>
+    <a id="btn-update-link" href="https://github.com/hbminh2508-design/uet-downloader-pro" target="_blank" class="update-btn">Cập nhật ngay trên GitHub</a>
   </div>
 
   <div class="switch-row">
@@ -192,6 +245,10 @@
       <div><b>Trang chủ & Học phần:</b> Tick chọn bài giảng, tự động lấy link Google Drive tải về 1-click.</div>
     </div>
     <div class="feature-item">
+      <span class="feature-icon">📝</span>
+      <div><b>Bài tập:</b> Tự động nhận diện mọi link đề bài, file đính kèm.</div>
+    </div>
+    <div class="feature-item">
       <span class="feature-icon">📑</span>
       <div><b>Mục Tập tin:</b> Tick chọn hàng loạt file môn học.</div>
     </div>
@@ -202,8 +259,8 @@
   </div>
 
   <div class="author-footer">
-    <span>Phiên bản 2.1</span>
-    <span class="author-badge">By HBM - Dawn</span>
+    <span id="app-version">Phiên bản 2.2</span>
+    <span class="author-badge">by HBM - Dawn</span>
   </div>
   <script src="popup.js"></script>
 </body>

@@ -1,6 +1,8 @@
 // Background Event Script for UET Downloader (by HBM - Dawn)
 const browserApi = (typeof browser !== 'undefined' && browser.runtime) ? browser : chrome;
 
+const GITHUB_REPO = 'hbminh2508-design/uet-downloader-pro';
+const MANIFEST_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/manifest.json`;
 const trackedTabs = new Set();
 
 // Lắng nghe sự kiện bắt đầu tải để tự động đóng tab đã mở
@@ -17,10 +19,69 @@ if (dlApi && dlApi.onCreated) {
   });
 }
 
+// -------------------------------------------------------------
+// Tự động kiểm tra bản cập nhật mới từ GitHub
+// -------------------------------------------------------------
+function compareVersions(v1, v2) {
+  const p1 = (v1 || '0').split('.').map(Number);
+  const p2 = (v2 || '0').split('.').map(Number);
+  const len = Math.max(p1.length, p2.length);
+  for (let i = 0; i < len; i++) {
+    const num1 = p1[i] || 0;
+    const num2 = p2[i] || 0;
+    if (num1 > num2) return 1;
+    if (num1 < num2) return -1;
+  }
+  return 0;
+}
+
+async function checkRemoteUpdate() {
+  try {
+    const res = await fetch(`${MANIFEST_RAW_URL}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return { hasUpdate: false };
+    const remote = await res.json();
+    const currentVer = browserApi.runtime.getManifest().version;
+
+    if (remote && remote.version && compareVersions(remote.version, currentVer) > 0) {
+      const updateInfo = {
+        hasUpdate: true,
+        currentVersion: currentVer,
+        newVersion: remote.version,
+        repoUrl: `https://github.com/${GITHUB_REPO}`,
+        downloadUrl: `https://github.com/${GITHUB_REPO}/archive/refs/heads/main.zip`
+      };
+
+      const actionApi = browserApi.action || browserApi.browserAction;
+      if (actionApi && actionApi.setBadgeText) {
+        actionApi.setBadgeText({ text: 'NEW' });
+        actionApi.setBadgeBackgroundColor({ color: '#cf222e' });
+      }
+
+      browserApi.storage.local.set({ updateInfo });
+      return updateInfo;
+    } else {
+      const actionApi = browserApi.action || browserApi.browserAction;
+      if (actionApi && actionApi.setBadgeText) {
+        actionApi.setBadgeText({ text: '' });
+      }
+      browserApi.storage.local.remove('updateInfo');
+    }
+  } catch (e) {}
+  return { hasUpdate: false };
+}
+
+// Kiểm tra khi khởi động và định kỳ mỗi 3 tiếng
+checkRemoteUpdate();
+setInterval(checkRemoteUpdate, 3 * 60 * 60 * 1000);
+
 browserApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'downloadFile') {
     handleDownload(message).then(sendResponse);
     return true; // Giữ kết nối bất đồng bộ
+  }
+  if (message.action === 'checkForUpdate') {
+    checkRemoteUpdate().then(sendResponse);
+    return true;
   }
 });
 
@@ -37,7 +98,6 @@ async function handleDownload({ url, filename }) {
       };
 
       // Chỉ gán tên file nếu đã có đuôi mở rộng hợp lệ (.pdf, .docx, v.v.)
-      // Nếu không có đuôi, bỏ trống để trình duyệt tự lấy tên chuẩn từ server (Content-Disposition)
       if (filename && /\.[a-zA-Z0-9]{2,5}$/i.test(filename)) {
         options.filename = filename.replace(/[\\/:*?"<>|]/g, '_').trim();
       }

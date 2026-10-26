@@ -581,6 +581,39 @@
 
     document.body.appendChild(bar);
     updateBar();
+
+    // Kiểm tra và hiển thị nút cập nhật nếu có phiên bản mới trên GitHub
+    api.storage.local.get('updateInfo', (data) => {
+      if (data && data.updateInfo && data.updateInfo.hasUpdate) {
+        showUpdateBadge(data.updateInfo);
+      }
+    });
+  }
+
+  function showUpdateBadge(info) {
+    const bar = document.getElementById(BAR_ID);
+    if (!bar || bar.querySelector('#uetdl-btn-update')) return;
+
+    const btnUpdate = document.createElement('button');
+    btnUpdate.id = 'uetdl-btn-update';
+    btnUpdate.type = 'button';
+    btnUpdate.className = 'uetdl-btn-update';
+    btnUpdate.innerHTML = `🚀 Có bản v${info.newVersion}`;
+    btnUpdate.title = `Đã có phiên bản mới v${info.newVersion} trên GitHub! Bấm để cập nhật.`;
+
+    btnUpdate.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(info.repoUrl || 'https://github.com/hbminh2508-design/uet-downloader-pro', '_blank');
+      showToast(`🚀 Hãy chạy file <b>cap-nhat.bat</b> trong thư mục extension để tự động cập nhật lên v${info.newVersion}!`, 5000);
+    });
+
+    const credit = bar.querySelector('.uetdl-credit');
+    if (credit) {
+      bar.insertBefore(btnUpdate, credit);
+    } else {
+      bar.appendChild(btnUpdate);
+    }
   }
 
   // -------------------------------------------------------------
@@ -694,8 +727,13 @@
     }
 
     api.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local' && changes.enabled !== undefined) {
-        apply(changes.enabled.newValue !== false);
+      if (area === 'local') {
+        if (changes.enabled !== undefined) {
+          apply(changes.enabled.newValue !== false);
+        }
+        if (changes.updateInfo !== undefined && changes.updateInfo.newValue) {
+          showUpdateBadge(changes.updateInfo.newValue);
+        }
       }
     });
   }

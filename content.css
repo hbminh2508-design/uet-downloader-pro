@@ -112,6 +112,25 @@
   border-color: #0856b5 !important;
 }
 
+/* Nút thông báo cập nhật mới nhấp nháy thu hút sự chú ý */
+#uetdl-bar button.uetdl-btn-update {
+  background: #e65100 !important;
+  border-color: #bf360c !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  animation: uetdl-pulse 1.8s infinite !important;
+}
+
+#uetdl-bar button.uetdl-btn-update:hover {
+  background: #bf360c !important;
+}
+
+@keyframes uetdl-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 #uetdl-bar button:disabled {
   opacity: 0.65 !important;
   cursor: not-allowed !important;
