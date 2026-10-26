@@ -1,0 +1,28 @@
+MIT License
+
+Copyright (c) 2026 HBM (HBM - Dawn)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+### Lời cảm ơn / Acknowledgements
+
+Dự án này thuộc bản quyền và được phát triển bởi **HBM (HBM - Dawn)**. 
+Dự án được xây dựng và mở rộng dựa trên nguồn cảm hứng và ý tưởng ban đầu từ dự án UET Downloader của tác giả XD4T, sau đó được HBM thiết kế lại toàn diện về giao diện, thuật toán phân giải bài giảng Google Drive, cơ chế tải ngầm và tự động đóng tab để mang lại một extension hoàn thiện, tiện lợi và mạnh mẽ hơn cho sinh viên UET.

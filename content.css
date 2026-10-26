@@ -1,0 +1,145 @@
+/* ==========================================================================
+   UET Downloader Pro - by HBM - Dawn
+   Modern & Cohesive UI for Canvas LMS
+   ========================================================================== */
+
+/* Checkbox từng mục bài giảng / tài liệu */
+.uetdl-cb {
+  width: 17px !important;
+  height: 17px !important;
+  margin: 0 10px 0 2px !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  accent-color: #0969da !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Checkbox ở tiêu đề chương / học phần */
+.uetdl-module-cb {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 10px 0 2px !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  accent-color: #0969da !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Thanh công cụ điều khiển nổi ở góc phải dưới */
+#uetdl-bar {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  z-index: 2147483647 !important;
+  background: #ffffff !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 10px !important;
+  padding: 7px 14px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 13px !important;
+  color: #24292f !important;
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  user-select: none !important;
+  transition: all 0.2s ease !important;
+}
+
+#uetdl-bar:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+#uetdl-bar .uetdl-count {
+  font-weight: 500 !important;
+  color: #424a53 !important;
+  margin-right: 2px !important;
+  white-space: nowrap !important;
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+#uetdl-bar .uetdl-badge {
+  font-weight: 700 !important;
+  color: #0969da !important;
+  background: #eef3fc !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+}
+
+#uetdl-bar button {
+  background: #f6f8fa !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #24292f !important;
+  cursor: pointer !important;
+  line-height: 18px !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+  white-space: nowrap !important;
+}
+
+#uetdl-bar button:hover:not(:disabled) {
+  background: #ebf0f4 !important;
+  border-color: #abb4be !important;
+}
+
+#uetdl-bar button:active:not(:disabled) {
+  background: #e1e7ec !important;
+}
+
+#uetdl-bar button.uetdl-btn-primary {
+  background: #0969da !important;
+  border-color: #0969da !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+#uetdl-bar button.uetdl-btn-primary:hover:not(:disabled) {
+  background: #0856b5 !important;
+  border-color: #0856b5 !important;
+}
+
+#uetdl-bar button:disabled {
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+}
+
+/* Chữ ký thương hiệu by HBM - Dawn */
+#uetdl-bar .uetdl-credit {
+  font-size: 11.5px !important;
+  color: #57606a !important;
+  margin-left: 4px !important;
+  white-space: nowrap !important;
+  font-weight: 600 !important;
+}
+
+/* Thông báo Toast */
+.uetdl-toast {
+  position: fixed !important;
+  bottom: 76px !important;
+  right: 20px !important;
+  background: #24292f !important;
+  color: #ffffff !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  z-index: 2147483647 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+  pointer-events: none !important;
+  max-width: 360px !important;
+  line-height: 1.4 !important;
+}
